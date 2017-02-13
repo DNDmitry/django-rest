@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+
+ db:
+   image: mysql
+   container_name: db
+   environment:
+     MYSQL_ROOT_PASSWORD: Aleksandrovich1
+     MYSQL_USER: root
+     MYSQL_PASSWORD: Aleksandrovich1
+   ports:
+     - 3307:3307
+   expose:
+     - 3307
+   volumes:
+     - ./db_dump:/docker-entrypoint-initdb.d
+ web:
+   build: .
+   command: python django_root/manage.py runserver 0.0.0.0:8000
+   volumes:
+     - .:/code
+   ports:
+     - "8000:8000"
+   depends_on:
+     - db
+
