@@ -7,7 +7,7 @@ services:
    container_name: db
    environment:
      MYSQL_ROOT_PASSWORD: Aleksandrovich1
-     MYSQL_USER: myprojectuser
+     MYSQL_USER: root
      MYSQL_PASSWORD: Aleksandrovich1
    ports:
      - 3307:3307
@@ -17,11 +17,12 @@ services:
      - ./db_dump:/docker-entrypoint-initdb.d
  web:
    build: .
-   command: python3.5 django_root/manage.py runserver 0.0.0.0:8000
+   command: python3.5 django_root/manage.py runserver 0.0.0.1:8000
    volumes:
      - .:/code
    ports:
      - "8000:8000"
    depends_on:
      - db
+ #  command: ["./wait-for-it.sh", "db:3306"]
 
