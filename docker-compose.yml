@@ -13,7 +13,7 @@ services:
       - database:database
     depends_on:
       - database
-    command: sh ./wait-for-it.sh db:6603
+    command: sh ./wait-for-it.sh database:6604
 
   database:
     image: mysql
